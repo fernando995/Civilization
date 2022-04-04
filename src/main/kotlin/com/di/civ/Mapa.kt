@@ -4,27 +4,37 @@ import kotlin.random.Random
 
 class Mapa {
 
-    init {
+    private val vision = 1
 
+    var matriz = MutableList(5) {
+        MutableList(5) {
+            var numeroRandom = Random.nextInt(0, 100)
 
-        var map = MutableList(100) {
-            MutableList(100) {
-                // var numeroRandom = (0..5).random()
-                var numeroRandom = Random.nextInt(0, 5)
-                when {
-                    numeroRandom == 0 -> Terreno("Llanura", "llanura.jpg", true)
-                    numeroRandom == 1 -> Terreno("Colina", "Colina.jpg", true)
-                    numeroRandom == 2 -> Terreno("Bosque", "Bosque.jpg", true)
-                    numeroRandom == 3 -> Terreno("Ciudad", "Ciudad.jpg", true)
-                    numeroRandom == 4 -> Terreno("Mar", "Mar.jpg", false)
-                    numeroRandom == 5 -> Terreno("Montaña", "Montaña.jpg", false)
-
-                }
-                var terreno = Terreno("Llanura", "llanura.jpg", true)
-                terreno
+            when {
+                numeroRandom in 0..24 -> Terreno.crearLlanura()
+                numeroRandom in 25..44 -> Terreno.crearColina()
+                numeroRandom in 45..64-> Terreno.crearBosque()
+                numeroRandom in 65..69 -> Terreno.crearCiudad()
+                numeroRandom in 70..89 -> Terreno.crearMar()
+                numeroRandom in 90..99 -> Terreno.crearMontana()
+                else -> Terreno.crearTerrenoDesconocido()
             }
         }
-
-        println(map)
     }
+
+    fun obtenerSubmapa(filaOrigen: Int, columnaOrigen: Int, rango: Int) : MutableList<MutableList<Terreno>>{
+        var mapaColindante = MutableList((rango * 2) + 1) { columnaActual ->
+            MutableList((rango * 2) + 1) { filaActual ->
+                if (filaActual - filaOrigen < 0 || columnaActual - columnaOrigen < 0) {
+                    Terreno.crearTerrenoDesconocido()
+                }else {
+                    matriz[columnaActual - columnaOrigen][filaActual - filaOrigen]
+                }
+            }
+        }
+        println(mapaColindante)
+        return mapaColindante
+    }
+
+
 }
