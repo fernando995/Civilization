@@ -4,11 +4,10 @@ import kotlin.random.Random
 
 class Mapa {
 
-    var matriz = MutableList(5) {
-        MutableList(5) {
-            val numeroRandom = Random.nextInt(0, 100)
+    var matriz = MutableList(Configuracion.columnasMapa) {
+        MutableList(Configuracion.filasMapa) {
 
-            when (numeroRandom) {
+            when (Random.nextInt(0, 100)) {
                 in 0..24 -> Terreno.crearLlanura()
                 in 25..44 -> Terreno.crearColina()
                 in 45..64 -> Terreno.crearBosque()

@@ -7,11 +7,8 @@ import javafx.stage.Stage
 
 class Civilization : Application() {
     override fun start(stage: Stage) {
-        var mapa = Mapa()
-        println(mapa.matriz)
-        mapa.obtenerSubMapa(0,0,1)
         val fxmlLoader = FXMLLoader(Civilization::class.java.getResource("map.fxml"))
-        val scene = Scene(fxmlLoader.load(), 320.0, 240.0)
+        val scene = Scene(fxmlLoader.load(), 1000.0, 750.0)
         stage.title = "Hello!"
         stage.scene = scene
         stage.show()
