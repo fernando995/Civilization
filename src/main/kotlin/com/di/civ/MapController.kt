@@ -1,6 +1,7 @@
 package com.di.civ
 
 import javafx.geometry.Insets
+import javafx.geometry.Pos
 import javafx.scene.control.Label
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
@@ -12,7 +13,7 @@ class MapController {
 
     lateinit var root : GridPane
     private val mapa = Mapa()
-    private val subMapa = mapa.obtenerSubMapa(0,0, Configuracion.rangoVision)
+    private val subMapa = mapa.obtenerSubMapa(1,1, Configuracion.rangoVision)
 
 
     fun initialize() {
@@ -26,11 +27,12 @@ class MapController {
                 val vBox = VBox()
                 vBox.children.add(0, ImageView())
                 vBox.children.add(1, Label("fila $fila columna $columna"))
-
                 root.add(vBox, columna, fila)
+                vBox.alignment = Pos.CENTER
+
             }
-        root.hgap = 50.0
-        root.vgap = 50.0
+        root.hgap = 5.0
+        root.vgap = 5.0
         root.padding = Insets(50.0, 50.0, 50.0, 50.0)
     }
 
@@ -38,19 +40,23 @@ class MapController {
         var pos = 0
         subMapa.forEachIndexed { _, terrenos ->
             terrenos.forEachIndexed { _, terreno ->
-                val view = root.children[pos]
-                view as VBox
-                val imageView = view.children[0] as ImageView
+                val vBox = root.children[pos]
+                vBox as VBox
+                vBox.style = "-fx-background-color: red;"
+
+                val imageView = vBox.children[0] as ImageView
                 println(terreno.imagen)
                 val f = File(terreno.imagen)
-                //imageView.maxHeight(10.0)
-                //imageView.maxWidth(10.0)
-                imageView.fitHeight = 50.0
-                imageView.fitWidth = 50.0
+                imageView.fitHeight = 60.0
+                imageView.fitWidth = 60.0
                 imageView.image = Image(f.toURI().toURL().toString())
 
-                val label = view.children[1] as Label
+                val label = vBox.children[1] as Label
                 label.text = terreno.nombre
+                label.maxWidth = 80.0
+                label.style = "-fx-background-color: blue;"
+                label.alignment = Pos.CENTER
+
                 pos++
             }
         }

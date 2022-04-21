@@ -19,16 +19,28 @@ class Mapa {
         }
     }
 
-    fun obtenerSubMapa(filaOrigen: Int, columnaOrigen: Int, rango: Int) : MutableList<MutableList<Terreno>>{
-        val subMapa = MutableList((rango * 2) + 1) { columnaActual ->
-            MutableList((rango * 2) + 1) { filaActual ->
-                if (filaActual - filaOrigen - rango < 0 || columnaActual - columnaOrigen - rango < 0) {
-                    Terreno.crearTerrenoDesconocido()
-                }else {
-                    matriz[columnaActual - columnaOrigen - rango][filaActual - filaOrigen - rango]
+    fun obtenerSubMapa(filaCentro: Int, columnaCentro: Int, vision: Int) : MutableList<MutableList<Terreno>>{
+
+        val puntoMedio = vision / 2 + 1
+
+        val subMapa = MutableList(Configuracion.columnasCampoVision) {
+            MutableList(Configuracion.filasCampoVision) {
+                Terreno.crearTerrenoDesconocido()
+            }
+        }
+        //var filaActual = 0
+        for ((columnaActual, columnaActualMapaGrande) in ((columnaCentro - puntoMedio)..(columnaCentro + puntoMedio)).withIndex()) {
+            println("columnaActualMapaGrande = $columnaActualMapaGrande")
+            println("ColumnaActual = $columnaActual")
+            for ((filaActual, filaActualMapaGrande) in ((filaCentro - puntoMedio) .. (filaCentro + puntoMedio)).withIndex()) {
+                println("filaActualMapaGrande = $filaActualMapaGrande")
+                println("filaActual = $filaActual")
+                if (!(columnaActualMapaGrande < 0 || filaActualMapaGrande < 0 || columnaActualMapaGrande >= Configuracion.columnasMapa || filaActualMapaGrande >= Configuracion.filasMapa)){
+                    subMapa[columnaActual][filaActual] = matriz[columnaActualMapaGrande][filaActualMapaGrande]
                 }
             }
         }
+        println(matriz)
         println(subMapa)
         return subMapa
     }

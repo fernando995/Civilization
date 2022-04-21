@@ -32,7 +32,7 @@ data class Terreno(var nombre : String, val imagen  : String, val sePuedeAndarSo
         }
 
         fun crearTerrenoDesconocido(): Terreno {
-            return Terreno("Terreno desconocido", "src\\main\\resources\\images\\desconocido.png", false)
+            return Terreno("Desconocido", "src\\main\\resources\\images\\desconocido.png", false)
         }
     }
 }
