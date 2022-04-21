@@ -20,7 +20,7 @@ data class Terreno(var nombre : String, val imagen  : String, val sePuedeAndarSo
         }
 
         fun crearCiudad(): Terreno {
-            return Terreno("Ciudad", "src\\main\\resources\\images\\ciudad.png", true)
+            return Terreno("Ciudad", "src\\main\\resources\\images\\pueblo.png", true)
         }
 
         fun crearMar(): Terreno {
