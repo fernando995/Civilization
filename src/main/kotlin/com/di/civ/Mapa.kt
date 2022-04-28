@@ -21,18 +21,16 @@ class Mapa {
 
     fun obtenerSubMapa(filaCentro: Int, columnaCentro: Int, vision: Int) : MutableList<MutableList<Terreno>>{
 
-        val puntoMedio = vision / 2 + 1
-
         val subMapa = MutableList(Configuracion.columnasCampoVision) {
             MutableList(Configuracion.filasCampoVision) {
                 Terreno.crearTerrenoDesconocido()
             }
         }
         //var filaActual = 0
-        for ((columnaActual, columnaActualMapaGrande) in ((columnaCentro - puntoMedio)..(columnaCentro + puntoMedio)).withIndex()) {
+        for ((columnaActual, columnaActualMapaGrande) in ((columnaCentro - vision)..(columnaCentro + vision)).withIndex()) {
             println("columnaActualMapaGrande = $columnaActualMapaGrande")
             println("ColumnaActual = $columnaActual")
-            for ((filaActual, filaActualMapaGrande) in ((filaCentro - puntoMedio) .. (filaCentro + puntoMedio)).withIndex()) {
+            for ((filaActual, filaActualMapaGrande) in ((filaCentro - vision) .. (filaCentro + vision)).withIndex()) {
                 println("filaActualMapaGrande = $filaActualMapaGrande")
                 println("filaActual = $filaActual")
                 if (!(columnaActualMapaGrande < 0 || filaActualMapaGrande < 0 || columnaActualMapaGrande >= Configuracion.columnasMapa || filaActualMapaGrande >= Configuracion.filasMapa)){

@@ -13,7 +13,7 @@ class MapController {
 
     lateinit var root : GridPane
     private val mapa = Mapa()
-    private val subMapa = mapa.obtenerSubMapa(1,1, Configuracion.rangoVision)
+    private val subMapa = mapa.obtenerSubMapa(10,10, Configuracion.rangoVision)
 
 
     fun initialize() {
@@ -38,14 +38,13 @@ class MapController {
 
     private fun rellenarGirdPaneConMapa(subMapa: MutableList<MutableList<Terreno>>) {
         var pos = 0
-        subMapa.forEachIndexed { _, terrenos ->
-            terrenos.forEachIndexed { _, terreno ->
+        subMapa.forEach { terrenos ->
+            terrenos.forEach { terreno ->
                 val vBox = root.children[pos]
                 vBox as VBox
-                vBox.style = "-fx-background-color: red;"
+                vBox.style = "-fx-background-color: red;" // $terreno.color
 
                 val imageView = vBox.children[0] as ImageView
-                println(terreno.imagen)
                 val f = File(terreno.imagen)
                 imageView.fitHeight = 60.0
                 imageView.fitWidth = 60.0
