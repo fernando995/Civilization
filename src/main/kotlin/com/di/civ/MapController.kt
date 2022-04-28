@@ -41,7 +41,7 @@ class MapController {
             terrenos.forEach { terreno ->
                 val vBox = root.children[pos]
                 vBox as VBox
-                vBox.style = "-fx-background-color: red;" // $terreno.color
+                vBox.style = "-fx-background-color: ${terreno.colorTerreno};" // $terreno.color
 
                 val imageView = vBox.children[0] as ImageView
                 val f = File(terreno.imagen)
@@ -52,7 +52,7 @@ class MapController {
                 val label = vBox.children[1] as Label
                 label.text = terreno.nombre
                 label.maxWidth = 80.0
-                label.style = "-fx-background-color: blue;"
+                label.style = "-fx-background-color: ${terreno.colorTexto};"
                 label.alignment = Pos.CENTER
 
                 pos++
