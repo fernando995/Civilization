@@ -13,7 +13,7 @@ class MapController {
 
     lateinit var root : GridPane
     private val mapa = Mapa()
-    private val subMapa = mapa.obtenerSubMapa(10,10, Configuracion.rangoVision)
+    private var subMapa = mapa.obtenerSubMapa()
 
 
     fun initialize() {
@@ -22,14 +22,13 @@ class MapController {
     }
 
     private fun iniciarGridPane() {
-        for (columna in 0 until Configuracion.columnasCampoVision)
-            for (fila in 0 until Configuracion.filasCampoVision) {
+        for (fila in 0 until Configuracion.filasCampoVision)
+            for (columna in 0 until Configuracion.columnasCampoVision) {
                 val vBox = VBox()
                 vBox.children.add(0, ImageView())
                 vBox.children.add(1, Label("fila $fila columna $columna"))
                 root.add(vBox, columna, fila)
                 vBox.alignment = Pos.CENTER
-
             }
         root.hgap = 5.0
         root.vgap = 5.0
@@ -59,5 +58,29 @@ class MapController {
                 pos++
             }
         }
+    }
+
+    fun moverArriba() {
+        println("moverArriba")
+        mapa.moverArriba()
+        rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
+    }
+
+    fun moverAbajo() {
+        println("moverAbajo")
+        mapa.moverAbajo()
+        rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
+    }
+
+    fun moverIzquierda() {
+        println("moverIzquierda")
+        mapa.moverIzquierda()
+        rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
+    }
+
+    fun moverDerecha() {
+        println("moverDerecha")
+        mapa.moverDerecha()
+        rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
     }
 }
