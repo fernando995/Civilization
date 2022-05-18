@@ -4,9 +4,9 @@ import kotlin.random.Random
 
 class Mapa {
 
-    class PosicionActual(var fila : Int, var columna : Int)
+    class Posicion(var fila : Int, var columna : Int)
 
-    private var posicionActual = PosicionActual(0,0)
+    private var posicionActual = Posicion(0,0)
 
     var matriz = MutableList(Configuracion.filasMapa) {
         MutableList(Configuracion.columnasMapa) {
@@ -42,6 +42,15 @@ class Mapa {
         return obtenerSubMapaP()
     }
 
+    fun obtenerPosicionActual(): Posicion{
+        return posicionActual
+    }
+
+    fun cambiarPosicionActual(posicion : Posicion){
+        this.posicionActual = posicion
+    }
+
+
     private fun obtenerSubMapaP(filaCentro: Int = posicionActual.fila, columnaCentro: Int = posicionActual.columna, vision: Int = Configuracion.rangoVision) : MutableList<MutableList<Terreno>>{
 
         val subMapa = MutableList(Configuracion.filasCampoVision) {
@@ -65,6 +74,8 @@ class Mapa {
         println(subMapa)
         return subMapa
     }
+
+
 
 
 }

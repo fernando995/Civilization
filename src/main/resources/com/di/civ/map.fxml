@@ -4,33 +4,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="root" alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.di.civ.MapController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-    <!--
-    <Label fx:id="cell00" GridPane.rowIndex="0" GridPane.columnIndex="0" text="0,0"/>
-    <Label fx:id="cell10" GridPane.rowIndex="1" GridPane.columnIndex="0" text="1,0"/>
-    <Label fx:id="cell20" GridPane.rowIndex="2" GridPane.columnIndex="0" text="2,0"/>
-
-    <Label fx:id="cell01" GridPane.rowIndex="0" GridPane.columnIndex="1" text="0,1"/>
-    <Label fx:id="cell11" GridPane.rowIndex="1" GridPane.columnIndex="1" text="1,1"/>
-    <Label fx:id="cell21" GridPane.rowIndex="2" GridPane.columnIndex="1" text="2,1"/>
-
-    <Label fx:id="cell02" GridPane.rowIndex="0" GridPane.columnIndex="2" text="0,2"/>
-    <Label fx:id="cell12" GridPane.rowIndex="1" GridPane.columnIndex="2" text="1,2"/>
-    <Label fx:id="cell22" GridPane.rowIndex="2" GridPane.columnIndex="2" text="2,2"/>
-
-
-    <columnConstraints>
-        <ColumnConstraints minWidth="10.0" prefWidth="100.0"  />
-        <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="100.0" />
-        <RowConstraints minHeight="10.0" prefHeight="100.0" />
-        <RowConstraints minHeight="10.0" prefHeight="100.0" />
-    </rowConstraints>
-    -->
-</GridPane>
+<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.di.civ.MapController">
+    <center>
+        <GridPane fx:id="root" alignment="CENTER" prefHeight="439.0" prefWidth="515.0">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </GridPane>
+    </center>
+   <top>
+        <Button fx:id="boton" focusTraversable="false" onMouseClicked="#centerMap" text="Centrar" BorderPane.alignment="CENTER" />
+   </top>
+</BorderPane>

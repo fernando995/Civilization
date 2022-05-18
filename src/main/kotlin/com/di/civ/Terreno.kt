@@ -1,18 +1,24 @@
 package com.di.civ
 
-data class Terreno(var nombre : String, val imagen  : String, val sePuedeAndarSobreEl : Boolean, val colorTerreno: String, val colorTexto: String) {
+data class Terreno(var nombre : String, val imagen  : String, val sePuedeAndarSobreEl : Boolean, val colorTerreno: String, val colorTexto: String, var estado: String = "") {
 
     override fun toString(): String {
         return nombre
     }
     companion object {
 
+        const val SAQUEADO = "Saqueado"
+        const val CONQUISTADO = "Conquistado"
+        const val CON_MINA = "Con mina"
+        const val CON_GRANJA = "Con granja"
+
+
         fun crearLlanura(): Terreno {
             return Terreno("Llanura", "src\\main\\resources\\images\\llanura.png", true, "#70E9F5", "#22750B" )
         }
 
         fun crearColina(): Terreno {
-            return Terreno("Colina", "src\\main\\resources\\images\\colina.png", true, "#EF1B07C", "#9AF742" )
+            return Terreno("Colina", "src\\main\\resources\\images\\colina.png", true, "#A4E847", "#9AF742" )
         }
 
         fun crearBosque(): Terreno {

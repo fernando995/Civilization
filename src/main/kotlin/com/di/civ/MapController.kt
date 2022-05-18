@@ -1,12 +1,16 @@
 package com.di.civ
 
+import javafx.fxml.FXMLLoader
 import javafx.geometry.Insets
 import javafx.geometry.Pos
+import javafx.scene.Scene
 import javafx.scene.control.Label
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
+import javafx.scene.input.MouseEvent
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.VBox
+import javafx.stage.Stage
 import java.io.File
 
 class MapController {
@@ -49,9 +53,11 @@ class MapController {
                 imageView.fitWidth = 60.0
                 imageView.image = Image(f.toURI().toURL().toString())
 
+
                 val label = vBox.children[1] as Label
                 label.text = terreno.nombre
                 label.maxWidth = 80.0
+                label.minWidth = 80.0
                 label.style = "-fx-background-color: ${terreno.colorTexto};"
                 label.alignment = Pos.CENTER
 
@@ -82,5 +88,23 @@ class MapController {
         println("moverDerecha")
         mapa.moverDerecha()
         rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
+    }
+
+    fun centerMap(MouseEvent: MouseEvent) {
+        val pos = Mapa.Posicion(0, 0)
+        mapa.cambiarPosicionActual(pos)
+        rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
+    }
+
+
+    fun abrirVentanaDetails(terreno: Terreno) {
+        val stage = Stage()
+        val loader = FXMLLoader(javaClass.getResource("details.fxml"))
+        val root = loader.load<VBox>()
+        val scene = Scene(root, 500.0, 500.0)
+        stage.scene = scene
+        stage.show()
+        val detailsController = loader.getController<DetailsController>()
+        detailsController.enviarTerreno(terreno)
     }
 }
